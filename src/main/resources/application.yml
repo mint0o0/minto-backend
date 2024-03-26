@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: minto-backend
+
+  data:
+    mongodb:
+      uri: mongodb+srv://jihak:MKhhL7Wnu4lVxd3e@cluster0.kv5caik.mongodb.net/mintoDB?retryWrites=true&w=majority
