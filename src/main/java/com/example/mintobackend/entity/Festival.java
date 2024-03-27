@@ -20,6 +20,7 @@ public class Festival {
     private LocalDateTime endTime;
     private List<String> imageList;
     private String location;
+    private String description;
     private List<HashMap<String, Object>> missions;
     @CreatedDate
     private LocalDateTime createdDate;

@@ -3,12 +3,11 @@ package com.example.mintobackend.controller;
 import com.example.mintobackend.entity.Festival;
 import com.example.mintobackend.service.FestivalService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 
 @RestController
@@ -25,7 +24,10 @@ public class FestivalController {
     }
 
     @GetMapping
-    public List<Festival> getFestivals(){
-        return festivalService.getAllFestival();
+    public ResponseEntity<Page<Festival>> getFestivals(
+        @RequestParam(required = false, defaultValue = "0", value = "page" ) Integer pageNo,
+        @RequestParam(required = false, defaultValue = "", value = "name") String name){
+        return new ResponseEntity<>(festivalService.getFestivals(name, pageNo), HttpStatus.OK);
     }
+
 }
