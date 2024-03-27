@@ -70,5 +70,119 @@
         }
       }
     ]
+  },
+  {
+    "name": "연세대학교 축제",
+    "startTime": {
+      "$date": "2024-03-20T00:00:00.000Z"
+    },
+    "endTime": {
+      "$date": "2024-03-22T00:00:00.000Z"
+    },
+    "imageList": [
+      "https://picsum.photos/200/300",
+      "https://picsum.photos/200",
+      "https://picsum.photos/300/300",
+      "https://picsum.photos/200/200"
+    ],
+    "location": "연세대학교 신촌 어딘가",
+    "missions": [
+      {
+        "description": "미션1 설명설명설명",
+        "imageList": ["image1", "image2", "image3"],
+        "endTime": {
+          "$date": "2024-03-22T00:00:00.000Z"
+        },
+        "location": "310관 앞",
+        "name": "미션1",
+        "startTime": {
+          "$date": "2024-03-20T00:00:00.000Z"
+        }
+      },
+      {
+        "description": "미션2 설명 설명 설명 설명...",
+        "imageList": ["image1", "image2", "image3", "image4"],
+        "endTime": {
+          "$date": "2024-03-22T00:00:00.000Z"
+        },
+        "location": "어딘가 앞",
+        "name": "미션2",
+        "startTime": {
+          "$date": "2024-03-20T00:00:00.000Z"
+        }
+      }
+    ]
+  },
+  {
+    "name": "빙어 축제",
+    "startTime": {
+      "$date": "2024-03-20T00:00:00.000Z"
+    },
+    "endTime": {
+      "$date": "2024-03-22T00:00:00.000Z"
+    },
+    "imageList": [
+      "https://picsum.photos/200/300",
+      "https://picsum.photos/200",
+      "https://picsum.photos/300/300",
+      "https://picsum.photos/200/200"
+    ],
+    "location": "얼음 꽁꽁 얼어 있는 곳",
+    "missions": [
+      {
+        "description": "다 같이 빙어 낚시를 해봐요~ 재밌겠다",
+        "imageList": ["image1", "image2", "image3", "image4"],
+        "endTime": {
+          "$date": "2024-03-22T00:00:00.000Z"
+        },
+        "location": "빙어 잡을 수 있는 곳",
+        "name": "빙어 낚시",
+        "startTime": {
+          "$date": "2024-03-20T00:00:00.000Z"
+        }
+      },
+      {
+        "description": "재밌게 썰매를 타봐요~~",
+        "imageList": ["image1", "image2", "image3", "image4"],
+        "endTime": {
+          "$date": "2024-03-22T00:00:00.000Z"
+        },
+        "location": "어디 어디 앞",
+        "name": "썰매 타기",
+        "startTime": {
+          "$date": "2024-03-20T00:00:00.000Z"
+        }
+      },
+      {
+        "description": "재밌게 개 썰매를 타봐요~~",
+        "imageList": ["image1", "image2"],
+        "endTime": {
+          "$date": "2024-03-22T00:00:00.000Z"
+        },
+        "location": "어디 어디 앞",
+        "name": "개 썰매 타기",
+        "startTime": {
+          "$date": "2024-03-20T00:00:00.000Z"
+        }
+      }
+    ]
+  },
+  {
+    "name": "벚꽃 축제",
+    "startTime": {
+      "$date": "2024-04-20T00:00:00.000Z"
+    },
+    "endTime": {
+      "$date": "2024-04-22T00:00:00.000Z"
+    },
+    "imageList": [
+      "https://picsum.photos/200/300",
+      "https://picsum.photos/200",
+      "https://picsum.photos/300/300",
+      "https://picsum.photos/200/200"
+    ],
+    "location": "진천 어딘가",
+    "missions": []
   }
+
 ]
