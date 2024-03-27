@@ -1,0 +1,74 @@
+[
+  {
+    "name": "중앙대학교 축제",
+    "startTime": {
+      "$date": "2024-03-20T00:00:00.000Z"
+    },
+    "endTime": {
+      "$date": "2024-03-22T00:00:00.000Z"
+    },
+    "imageList": [
+      "url1",
+      "url2",
+      "url3",
+      "url4"
+    ],
+    "location": "서울 동작구 흑석로 84",
+    "missions": [
+      {
+        "description": "열심히 공을 옮겨요",
+        "imageList": ["image1", "image2", "image3"],
+        "endTime": {
+          "$date": "2024-03-22T00:00:00.000Z"
+        },
+        "location": "310관 앞",
+        "name": "공 옮기기",
+        "startTime": {
+          "$date": "2024-03-20T00:00:00.000Z"
+        }
+      }
+    ]
+  },
+  {
+    "name": "서울대학교 축제",
+    "startTime": {
+      "$date": "2024-03-20T00:00:00.000Z"
+    },
+    "endTime": {
+      "$date": "2024-03-22T00:00:00.000Z"
+    },
+    "imageList": [
+      "https://picsum.photos/200/300",
+      "https://picsum.photos/200",
+      "https://picsum.photos/300/300",
+      "https://picsum.photos/200/200"
+    ],
+    "location": "서울대학교.. 최고",
+    "missions": [
+      {
+        "description": "열심히 공을 옮겨요",
+        "imageList": ["image1", "image2", "image3"],
+        "endTime": {
+          "$date": "2024-03-22T00:00:00.000Z"
+        },
+        "location": "310관 앞",
+        "name": "공 옮기기",
+        "startTime": {
+          "$date": "2024-03-20T00:00:00.000Z"
+        }
+      },
+      {
+        "description": "도서관에서 책 읽기",
+        "imageList": ["image1", "image2", "image3", "image4"],
+        "endTime": {
+          "$date": "2024-03-22T00:00:00.000Z"
+        },
+        "location": "어딘가 앞",
+        "name": "책 읽기",
+        "startTime": {
+          "$date": "2024-03-20T00:00:00.000Z"
+        }
+      }
+    ]
+  }
+]
