@@ -1,23 +1,24 @@
 package com.example.mintobackend.entity;
 
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "festival")
+@Document(collection = "member")
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class User {
+@Builder
+@AllArgsConstructor
+public class Member {
     @Id
     private String id;
-    private String username;
     private String walletAddress;
     private Integer age;
     private String area;
+
+    // enum type
+    private Authority authority;
 
 }
