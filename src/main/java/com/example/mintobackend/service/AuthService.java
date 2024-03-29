@@ -41,6 +41,10 @@ public class AuthService {
 
     @Transactional
     public TokenDto login(MemberRequestDto memberRequestDto) {
+        if (!memberRepository.existsByWalletAddress(memberRequestDto.getWalletAddress())) {
+            throw new RuntimeException("회원가입이 필요합니다");
+        }
+        
         // 지갑 주소만 기반으로 jwt 생성 -> customAuthenticationProvider 통해서 설정
         Authentication authenticationToken = authenticationManagerBuilder.getObject().authenticate(new UsernamePasswordAuthenticationToken(memberRequestDto.getWalletAddress(), null));
 //        Authentication authenticationToken = new UsernamePasswordAuthenticationToken(memberRequestDto.getWalletAddress(), null);
@@ -53,7 +57,7 @@ public class AuthService {
         TokenDto tokenDto = tokenProvider.generateTokenDto(authenticationToken);
         // 4. RefreshToken 저장
         RefreshToken refreshToken = RefreshToken.builder()
-                .key(authenticationToken.getName())
+                .key(authentication.getName())
                 .value(tokenDto.getRefreshToken())
                 .build();
 
