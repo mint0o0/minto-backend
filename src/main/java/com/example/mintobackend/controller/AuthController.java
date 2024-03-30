@@ -6,6 +6,7 @@ import com.example.mintobackend.dto.TokenDto;
 import com.example.mintobackend.dto.TokenRequestDto;
 import com.example.mintobackend.service.AuthService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
@@ -35,5 +36,10 @@ public class AuthController  {
     public ResponseEntity<String> withdrawal(@AuthenticationPrincipal User user) {
         authService.withdrawal(user.getUsername());
         return ResponseEntity.ok("deleted");
+    }
+
+    @GetMapping("/exist/{walletAddress}")
+    public ResponseEntity<Boolean> isExistMember(@PathVariable String walletAddress){
+        return new ResponseEntity<>(authService.isExistMemberByWalletAddress(walletAddress), HttpStatus.OK) ;
     }
 }
