@@ -96,6 +96,11 @@ public class AuthService {
         return tokenDto;
     }
 
+    @Transactional(readOnly = true)
+    public boolean isExistMemberByWalletAddress(String walletAddress){
+        return memberRepository.existsByWalletAddress(walletAddress);
+    }
+
     @Transactional
     public void withdrawal(String userId) {
         memberRepository.deleteById(userId);
