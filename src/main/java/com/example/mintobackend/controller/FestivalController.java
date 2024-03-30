@@ -18,9 +18,9 @@ public class FestivalController {
     private final FestivalService festivalService;
     // for testing
     @GetMapping("/{id}")
-    public String getFestival(@PathVariable Integer id){
+    public ResponseEntity<Festival> getFestival(@PathVariable String id){
         System.out.println(id);
-        return id.toString();
+        return new ResponseEntity<>(festivalService.getFestival(id), HttpStatus.OK);
     }
 
     @GetMapping
@@ -29,5 +29,6 @@ public class FestivalController {
         @RequestParam(required = false, defaultValue = "", value = "name") String name){
         return new ResponseEntity<>(festivalService.getFestivals(name, pageNo), HttpStatus.OK);
     }
+
 
 }

@@ -17,6 +17,7 @@ public class Member {
     private String walletAddress;
     private Integer age;
     private String area;
+    private String gender;
 
     // enum type
     private Authority authority;
