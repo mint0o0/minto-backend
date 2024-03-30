@@ -12,11 +12,12 @@ public class MemberResponseDto {
     private Integer age;
     private String area;
     private String walletAddress;
-
+    private String gender;
     public MemberResponseDto(Member member) {
         this.age = member.getAge();
         this.area = member.getArea();
         this.walletAddress = member.getWalletAddress();
+        this.gender = member.getGender();
     }
 
     public static MemberResponseDto of(Member member) {

@@ -1,9 +1,7 @@
 package com.example.mintobackend.entity;
 
 import lombok.Getter;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
@@ -22,8 +20,5 @@ public class Festival {
     private String location;
     private String description;
     private List<HashMap<String, Object>> missions;
-    @CreatedDate
-    private LocalDateTime createdDate;
-    @LastModifiedDate
-    private LocalDateTime updateDate;
+
 }

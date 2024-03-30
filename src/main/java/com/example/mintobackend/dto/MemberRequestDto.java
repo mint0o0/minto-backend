@@ -6,8 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.authority.AuthorityUtils;
+
 
 
 @Getter
@@ -18,12 +17,13 @@ public class MemberRequestDto {
     private String walletAddress;
     private String area;
     private Integer age;
-
+    private String gender;
     public Member toMember() {
         return Member.builder()
                 .area(area)
                 .walletAddress(walletAddress)
                 .age(age)
+                .gender(gender)
                 .authority(Authority.ROLE_USER)
                 .build();
     }
