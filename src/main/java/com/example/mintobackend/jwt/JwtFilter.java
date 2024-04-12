@@ -1,5 +1,6 @@
 package com.example.mintobackend.jwt;
 
+import io.jsonwebtoken.IncorrectClaimException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -7,12 +8,15 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
 @RequiredArgsConstructor
+@Component
 public class JwtFilter extends OncePerRequestFilter {
 
     public static final String AUTHORIZATION_HEADER = "Authorization";
@@ -33,6 +37,20 @@ public class JwtFilter extends OncePerRequestFilter {
         if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
             Authentication authentication = tokenProvider.getAuthentication(jwt);
             SecurityContextHolder.getContext().setAuthentication(authentication);
+        }
+        try { // 정상 토큰인지 검사
+            if (jwt != null && tokenProvider.validateToken(jwt)) {
+                Authentication authentication = tokenProvider.getAuthentication(jwt);
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
+        } catch (IncorrectClaimException e) { // 잘못된 토큰일 경우
+            SecurityContextHolder.clearContext();
+            System.out.println("Invalid JWT");
+            response.sendError(403);
+        } catch (UsernameNotFoundException e) { // 회원을 찾을 수 없을 경우
+            SecurityContextHolder.clearContext();
+            System.out.println("Can't find user");
+            response.sendError(403);
         }
 
         filterChain.doFilter(request, response);
