@@ -27,5 +27,5 @@ public class Member {
 
     // todo: 어떻게 할지 좀더 생각
     // festivalId: {visitDate: 2020-10-15, mission: [1, 3, 2]}
-    private HashMap<String, Object> visitFestivals;
+    private HashMap<String, HashMap<String, Object>> visitFestivals;
 }

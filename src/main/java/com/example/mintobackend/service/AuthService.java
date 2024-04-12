@@ -18,6 +18,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
+
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -34,7 +36,7 @@ public class AuthService {
         }
 
         Member member = memberRequestDto.toMember();
-
+        member.setVisitFestivals(new HashMap<>());
         return MemberResponseDto.of(memberRepository.save(member));
     }
 
