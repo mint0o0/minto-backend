@@ -26,8 +26,12 @@ public class FestivalController {
     @GetMapping
     public ResponseEntity<Page<Festival>> getFestivals(
         @RequestParam(required = false, defaultValue = "0", value = "page" ) Integer pageNo,
-        @RequestParam(required = false, defaultValue = "", value = "name") String name){
-        return new ResponseEntity<>(festivalService.getFestivals(name, pageNo), HttpStatus.OK);
+        @RequestParam(required = false, defaultValue = "", value = "name") String name,
+        @RequestParam(required = false, defaultValue = "", value = "category") String category){
+        if (category.isEmpty()){
+            return new ResponseEntity<>(festivalService.getFestivals(name, pageNo), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(festivalService.getFestivals(name, category, pageNo), HttpStatus.OK);
     }
 
 
