@@ -1,6 +1,7 @@
 package com.example.mintobackend.entity;
 
 import lombok.Getter;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Document(collection = "festival")
 @Getter
+@ToString
 public class Festival {
     @Id
     private String id;
@@ -20,5 +22,5 @@ public class Festival {
     private String location;
     private String description;
     private List<HashMap<String, Object>> missions;
-
+    private String category;
 }
