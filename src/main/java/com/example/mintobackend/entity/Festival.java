@@ -20,7 +20,12 @@ public class Festival {
     private LocalDateTime endTime;
     private List<String> imageList;
     private String location;
+    private String latitude;
+    private String longitude;
+    private String price;
+    private String host;
     private String description;
     private List<HashMap<String, Object>> missions;
     private String category;
+
 }
