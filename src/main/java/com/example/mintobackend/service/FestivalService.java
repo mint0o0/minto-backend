@@ -79,10 +79,22 @@ public class FestivalService {
             return 1;
         }
         else {
-            var cnt = festival.getCount();
+            int cnt = festival.getCount();
             festival.setCount(cnt+1);
             festivalRepository.save(festival);
-            return cnt;
+            return cnt+1;
+        }
+    }
+
+    public Object getNftList(String festivalId){
+        var festival = festivalRepository.findById(festivalId).orElseThrow(
+                () -> new RuntimeException("축제 없음")
+        );
+        if (festival.getNftList() == null){
+            return new ArrayList<>();
+        }
+        else {
+            return festival.getNftList();
         }
     }
 }
