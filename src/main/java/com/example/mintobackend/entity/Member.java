@@ -6,7 +6,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.HashMap;
-import java.util.List;
 
 @Document(collection = "member")
 @Getter
@@ -19,9 +18,9 @@ public class Member {
     private String id;
     private String walletAddress;
     private Integer age;
+    private String birthDate;
     private String area;
     private String gender;
-
     // enum type
     private Authority authority;
 

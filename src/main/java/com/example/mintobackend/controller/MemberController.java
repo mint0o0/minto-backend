@@ -8,10 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +31,10 @@ public class MemberController {
         var r = memberService.missionCompleted(user.getUsername(), map.get("festivalId").toString(), Integer.valueOf(map.get("missionIndex").toString()));
         return new ResponseEntity<>(r, HttpStatus.OK);
     }
+    @GetMapping("/mission/complete/{festivalId}")
+    public ResponseEntity<Object> getCompleteMissionByFestivalId(@AuthenticationPrincipal User user, @PathVariable String festivalId){
 
+        return new ResponseEntity<>(memberService.getCompleteMission(user.getUsername(), festivalId), HttpStatus.OK);
+    }
 
 }
