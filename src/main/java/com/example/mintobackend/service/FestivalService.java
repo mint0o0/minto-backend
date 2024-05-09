@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+
 
 @Service
 @RequiredArgsConstructor
@@ -38,5 +40,49 @@ public class FestivalService {
     }
     public Festival createFestivals(Festival festival){
         return festivalRepository.save(festival);
+    }
+
+    public Festival insertNft(String id, Object nft){
+        var festival = festivalRepository.findById(id).orElseThrow(
+                () -> new RuntimeException("축제 없음")
+        );
+        if (festival.getNftList() == null){
+            var nftList = new ArrayList<>();
+            nftList.add(nft);
+            festival.setNftList(nftList);
+        } else {
+            festival.getNftList().add(nft);
+        }
+        festivalRepository.save(festival);
+        return festival;
+    }
+    public Integer nftCount(String id){
+        var festival = festivalRepository.findById(id).orElseThrow(
+                () -> new RuntimeException("축제 없음")
+        );
+        if (festival.getCount() == null){
+            festival.setCount(0);
+            festivalRepository.save(festival);
+            return 0;
+        }
+        else {
+             return festival.getCount();
+        }
+    }
+    public Integer updateNftCount(String id){
+        var festival = festivalRepository.findById(id).orElseThrow(
+                () -> new RuntimeException("축제 없음")
+        );
+        if (festival.getCount() == null){
+            festival.setCount(1);
+            festivalRepository.save(festival);
+            return 1;
+        }
+        else {
+            var cnt = festival.getCount();
+            festival.setCount(cnt+1);
+            festivalRepository.save(festival);
+            return cnt;
+        }
     }
 }

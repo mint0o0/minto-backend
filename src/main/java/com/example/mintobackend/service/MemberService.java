@@ -1,7 +1,6 @@
 package com.example.mintobackend.service;
 
 import com.example.mintobackend.dto.VisitFestivalDto;
-import com.example.mintobackend.entity.Festival;
 import com.example.mintobackend.exception.CannotFindElementException;
 import com.example.mintobackend.repository.FestivalRepository;
 import com.example.mintobackend.repository.MemberRepository;
@@ -65,5 +64,14 @@ public class MemberService {
 
         return member.getVisitFestivals();
     }
-
+    @Transactional(readOnly = true)
+    public Object getCompleteMission(String memberId, String festivalId){
+        var member = memberRepository.findByWalletAddress(memberId).orElseThrow(
+                ()->new RuntimeException("멤버 못찾음")
+        );
+        var festival = festivalRepository.findById(festivalId).orElseThrow(
+                () ->new RuntimeException("축제 못찾음")
+        );
+        return member.getVisitFestivals().get(festivalId);
+    }
 }
