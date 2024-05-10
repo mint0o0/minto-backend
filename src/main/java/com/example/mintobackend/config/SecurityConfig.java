@@ -40,6 +40,7 @@ public class SecurityConfig{
                             ->authorizeRequest
                             .requestMatchers("/auth/**").permitAll()
                             .requestMatchers("/festival/**").permitAll()
+                            .requestMatchers("/admin/**").permitAll()
                             .anyRequest().authenticated());
 
         return http.build();

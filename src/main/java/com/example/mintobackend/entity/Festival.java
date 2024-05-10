@@ -1,5 +1,6 @@
 package com.example.mintobackend.entity;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -14,6 +15,7 @@ import java.util.List;
 @Getter
 @ToString
 @Setter
+@Builder
 public class Festival {
     @Id
     private String id;
