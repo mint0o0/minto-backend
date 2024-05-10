@@ -11,7 +11,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 @Service
@@ -96,5 +99,32 @@ public class FestivalService {
         else {
             return festival.getNftList();
         }
+    }
+
+    public Object addFestival(HashMap<String,Object> hashFestival){
+
+        var statTime = hashFestival.get("startTime").toString();
+        var endTime = hashFestival.get("endTime").toString();
+
+        var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+        var festival = Festival.builder()
+                .name(hashFestival.get("name").toString())
+                .startTime(LocalDateTime.parse(statTime, formatter))
+                .endTime(LocalDateTime.parse(endTime, formatter))
+                .location(hashFestival.get("location").toString())
+                .latitude(hashFestival.get("latitude").toString())
+                .longitude(hashFestival.get("longitude").toString())
+                .price(hashFestival.get("price").toString())
+                .host(hashFestival.get("host").toString())
+                .description(hashFestival.get("description").toString())
+                .phone(hashFestival.get("phone").toString())
+                .instagram(hashFestival.get("instagram").toString())
+                .missions(new ArrayList<HashMap<String, Object>>())
+                .nftList(new ArrayList<Object>())
+                .count(0)
+                .build();
+
+        return festivalRepository.save(festival);
     }
 }
