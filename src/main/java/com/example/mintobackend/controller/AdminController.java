@@ -26,7 +26,7 @@ public class AdminController {
         return new ResponseEntity<>(festivalService.insertNft(id, nft), HttpStatus.OK);
     }
 
-    @GetMapping("/nftList/{festivalId}")
+    @GetMapping("/festival/nft/{festivalId}")
     public ResponseEntity<Object> getNftList(@PathVariable String festivalId){
         return new ResponseEntity<>(festivalService.getNftList(festivalId), HttpStatus.OK);
     }
