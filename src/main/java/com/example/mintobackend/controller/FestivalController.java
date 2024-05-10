@@ -55,13 +55,6 @@ public class FestivalController {
     public ResponseEntity<Integer> updateSendNft(@PathVariable String id){
         return new ResponseEntity<>(festivalService.updateNftCount(id), HttpStatus.OK);
     }
-    @PutMapping("/{id}/nft")
-    public ResponseEntity<Festival> createNft(@PathVariable String id, @RequestBody Object nft){
-        return new ResponseEntity<>(festivalService.insertNft(id, nft), HttpStatus.OK);
-    }
 
-    @GetMapping("/nftList/{festivalId}")
-    public ResponseEntity<Object> getNftList(@PathVariable String festivalId){
-        return new ResponseEntity<>(festivalService.getNftList(festivalId), HttpStatus.OK);
-    }
+
 }
