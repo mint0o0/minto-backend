@@ -122,6 +122,7 @@ public class FestivalService {
                 .instagram(hashFestival.get("instagram").toString())
                 .missions(new ArrayList<HashMap<String, Object>>())
                 .nftList(new ArrayList<Object>())
+                .imageList(new ArrayList<>())
                 .count(0)
                 .build();
 

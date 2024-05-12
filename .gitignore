@@ -44,3 +44,5 @@ out/
 *.zip
 *.tar.gz
 *.rar
+
+/src/main/resources/application-private.yml
