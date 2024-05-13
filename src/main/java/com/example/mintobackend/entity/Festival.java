@@ -1,5 +1,6 @@
 package com.example.mintobackend.entity;
 
+import com.example.mintobackend.dto.FestivalRequestDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,4 +36,23 @@ public class Festival {
     private String instagram;
     private List<Object> nftList;
     private Integer count;
+
+
+//    public Festival(FestivalRequestDto dto){
+//        this.name = dto.getName();
+//        this.startTime = dto.getStartTime();
+//        this.endTime = dto.getEndTime();
+//        this.imageList = dto.getImageList();
+//        this.location = dto.getLocation();
+//        this.latitude = dto.getLatitude();
+//        this.longitude = dto.getLongitude();
+//        this.price = dto.getPrice();
+//        this.host = dto.getHost();
+//        this.description = dto.getDescription();
+//        this.category = dto.getCategory();
+//        this.phone = dto.getPhone();
+//        this.instagram = dto.getInstagram();
+//
+//    }
+
 }

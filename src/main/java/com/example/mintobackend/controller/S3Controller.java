@@ -1,9 +1,7 @@
 package com.example.mintobackend.controller;
 
-import com.amazonaws.services.s3.AmazonS3Client;
 import com.example.mintobackend.service.S3Service;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +19,7 @@ import java.util.List;
 public class S3Controller {
 
     private final S3Service s3Service;
-
+    
     @PostMapping
     public ResponseEntity<List<String>> uploadFile(@RequestParam("file") List<MultipartFile> multipartFile) throws IOException {
         return new ResponseEntity<>(s3Service.upload(multipartFile), HttpStatus.OK) ;

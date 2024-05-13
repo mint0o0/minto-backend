@@ -1,5 +1,6 @@
 package com.example.mintobackend.controller;
 
+import com.example.mintobackend.dto.FestivalRequestDto;
 import com.example.mintobackend.entity.Festival;
 import com.example.mintobackend.repository.FestivalRepository;
 import com.example.mintobackend.service.FestivalService;
@@ -43,7 +44,7 @@ public class FestivalController {
         return null;
     }
     @PutMapping
-    public ResponseEntity<Festival> updateFestival(@RequestBody Festival festival){
+    public ResponseEntity<Festival> updateFestival(@RequestBody FestivalRequestDto dto){
         return null;
     }
 
