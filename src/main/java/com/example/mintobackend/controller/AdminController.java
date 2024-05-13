@@ -1,14 +1,17 @@
 package com.example.mintobackend.controller;
 
+
 import com.example.mintobackend.entity.Festival;
+import com.example.mintobackend.service.FestivalService;
 import com.example.mintobackend.entity.Mission;
 import com.example.mintobackend.entity.Statistics;
-import com.example.mintobackend.service.FestivalService;
 import com.example.mintobackend.service.StatisticsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 import com.example.mintobackend.service.MissionService;
 
 import java.util.List;
@@ -17,6 +20,22 @@ import java.util.List;
 @RequestMapping("/admin")
 @RequiredArgsConstructor
 public class AdminController {
+
+    private final FestivalService festivalService;
+
+    @PostMapping("/festival")
+    public ResponseEntity<Object> addFestival(@RequestBody HashMap<String,Object> festival) {
+        return new ResponseEntity<>(festivalService.addFestival(festival), HttpStatus.CREATED);
+    }
+    @PutMapping("/festival/{id}/nft")
+    public ResponseEntity<Festival> createNft(@PathVariable String id, @RequestBody Object nft){
+        return new ResponseEntity<>(festivalService.insertNft(id, nft), HttpStatus.OK);
+    }
+
+    @GetMapping("/festival/nft/{festivalId}")
+    public ResponseEntity<Object> getNftList(@PathVariable String festivalId){
+        return new ResponseEntity<>(festivalService.getNftList(festivalId), HttpStatus.OK);
+    }
 	private final MissionService missionService;
 	private final FestivalService festivalService;
 	private final StatisticsService statisticsService;
