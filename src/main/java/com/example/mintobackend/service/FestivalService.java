@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 @Service
@@ -26,13 +27,13 @@ public class FestivalService {
     @Transactional(readOnly = true)
     public Page<Festival> getFestivals(String name, int pageNo){
         Pageable pageable = PageRequest.of(pageNo, 5);
-        return festivalRepository.findByNameContainsIgnoreCase(name, pageable);
+        return festivalRepository.findByNameContainsIgnoreCaseOrderByStartTime(name, pageable);
 
     }
     @Transactional(readOnly = true)
     public Page<Festival> getFestivals(String name, String category, int pageNo){
         Pageable pageable = PageRequest.of(pageNo, 5);
-        return festivalRepository.findByNameContainsAndCategory(name, category, pageable);
+        return festivalRepository.findByNameContainsIgnoreCaseAndCategoryOrderByStartTime(name, category, pageable);
 
     }
     @Transactional(readOnly = true)
@@ -59,6 +60,19 @@ public class FestivalService {
         festivalRepository.save(festival);
         return festival;
     }
+
+    @Transactional
+    public List<String> insertImageList(String id, List<String> imageList){
+        var festival = festivalRepository.findById(id).orElseThrow(
+                () -> new RuntimeException("축제 없음")
+        );
+        var addList = festival.getImageList();
+        // 두 리스트 더하기
+        addList.addAll(imageList);
+        festival.setImageList(addList);
+        return addList;
+    }
+
     public Integer nftCount(String id){
         var festival = festivalRepository.findById(id).orElseThrow(
                 () -> new RuntimeException("축제 없음")
