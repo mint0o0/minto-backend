@@ -1,6 +1,7 @@
 package com.example.mintobackend.controller;
 
 import com.example.mintobackend.entity.Festival;
+import com.example.mintobackend.repository.FestivalRepository;
 import com.example.mintobackend.service.FestivalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 public class FestivalController {
 
     private final FestivalService festivalService;
+    private final FestivalRepository festivalRepository;
+
     // for testing
     @GetMapping("/{id}")
     public ResponseEntity<Festival> getFestival(@PathVariable String id){
@@ -35,4 +38,30 @@ public class FestivalController {
     }
 
 
+    @PostMapping
+    public ResponseEntity<Festival> createFestival(@RequestBody Festival festival){
+        return null;
+    }
+    @PutMapping
+    public ResponseEntity<Festival> updateFestival(@RequestBody Festival festival){
+        return null;
+    }
+
+    @GetMapping("/{id}/nft/count")
+    public ResponseEntity<Integer> countSendNft(@PathVariable String id){
+        return new ResponseEntity<>(festivalService.nftCount(id), HttpStatus.OK);
+    }
+    @PutMapping("/{id}/nft/count")
+    public ResponseEntity<Integer> updateSendNft(@PathVariable String id){
+        return new ResponseEntity<>(festivalService.updateNftCount(id), HttpStatus.OK);
+    }
+    @PutMapping("/{id}/nft")
+    public ResponseEntity<Festival> createNft(@PathVariable String id, @RequestBody Object nft){
+        return new ResponseEntity<>(festivalService.insertNft(id, nft), HttpStatus.OK);
+    }
+
+    @GetMapping("/nftList/{festivalId}")
+    public ResponseEntity<Object> getNftList(@PathVariable String festivalId){
+        return new ResponseEntity<>(festivalService.getNftList(festivalId), HttpStatus.OK);
+    }
 }
