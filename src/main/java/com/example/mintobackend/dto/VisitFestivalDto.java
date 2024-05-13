@@ -1,6 +1,7 @@
 package com.example.mintobackend.dto;
 
 import com.example.mintobackend.entity.Festival;
+import com.example.mintobackend.entity.Mission;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ public class VisitFestivalDto {
     private List<String> imageList;
     private String location;
     private String description;
-    private List<HashMap<String, Object>> missions;
+    private List<Mission> missions;
     private Object visitDate;
     private String category;
     

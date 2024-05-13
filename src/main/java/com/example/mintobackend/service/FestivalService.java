@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
@@ -38,5 +40,14 @@ public class FestivalService {
     }
     public Festival createFestivals(Festival festival){
         return festivalRepository.save(festival);
+    }
+
+    public Festival updateFestival(Festival festival){
+        return festivalRepository.save(festival);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Festival> getFestivalsByAdminId(String adminId){
+        return festivalRepository.findByAdminId(adminId);
     }
 }
