@@ -27,13 +27,13 @@ public class FestivalService {
     @Transactional(readOnly = true)
     public Page<Festival> getFestivals(String name, int pageNo){
         Pageable pageable = PageRequest.of(pageNo, 5);
-        return festivalRepository.findByNameContainsIgnoreCaseOrderByStartTime(name, pageable);
+        return festivalRepository.findByNameContainsIgnoreCase(name, pageable);
 
     }
     @Transactional(readOnly = true)
     public Page<Festival> getFestivals(String name, String category, int pageNo){
         Pageable pageable = PageRequest.of(pageNo, 5);
-        return festivalRepository.findByNameContainsIgnoreCaseAndCategoryOrderByStartTime(name, category, pageable);
+        return festivalRepository.findByNameContainsIgnoreCaseAndCategory(name, category, pageable);
 
     }
     @Transactional(readOnly = true)

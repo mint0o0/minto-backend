@@ -74,4 +74,31 @@ public class MemberService {
         );
         return member.getVisitFestivals().get(festivalId);
     }
+
+    @Transactional(readOnly = true)
+    public Integer checkCompleteMission(String memberId, String festivalId){
+        var member = memberRepository.findByWalletAddress(memberId).orElseThrow(
+                ()->new RuntimeException("멤버 못찾음")
+        );
+        var festival = festivalRepository.findById(festivalId).orElseThrow(
+                () ->new RuntimeException("축제 못찾음")
+        );
+        List<Integer> memberCompleteMission = (List<Integer>) member.getVisitFestivals().get(festivalId).get("mission");
+        var festivalMission = festival.getMissions();
+        // 시작 안했으면 0
+        // 전부 다 완료하지는 않았고 하나라도 완료 했으면 1
+        // 전부 다 완료하면 2
+        System.out.println(memberCompleteMission);
+        System.out.println(festivalMission);
+        if (memberCompleteMission.isEmpty()){
+            return 0;
+        }
+        else if (memberCompleteMission.size() == festivalMission.size()){
+            return 2;
+        }
+        else {
+            return 1;
+        }
+
+    }
 }

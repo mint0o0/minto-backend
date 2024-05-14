@@ -7,6 +7,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 
 public interface FestivalRepository extends MongoRepository<Festival, String> {
-    Page<Festival> findByNameContainsIgnoreCaseOrderByStartTime(String name, Pageable pageable);
-    Page<Festival> findByNameContainsIgnoreCaseAndCategoryOrderByStartTime(String name, String category, Pageable pageable);
+    Page<Festival> findByNameContainsIgnoreCase(String name, Pageable pageable);
+    Page<Festival> findByNameContainsIgnoreCaseAndCategory(String name, String category, Pageable pageable);
 }
