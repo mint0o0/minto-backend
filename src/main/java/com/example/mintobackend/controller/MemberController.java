@@ -37,4 +37,8 @@ public class MemberController {
         return new ResponseEntity<>(memberService.getCompleteMission(user.getUsername(), festivalId), HttpStatus.OK);
     }
 
+    @GetMapping("/mission/complete/all/{festivalId}")
+    public ResponseEntity<Integer> checkCompleteMissionAll(@AuthenticationPrincipal User user, @PathVariable String festivalId){
+        return new ResponseEntity<>(memberService.checkCompleteMission(user.getUsername(), festivalId), HttpStatus.OK);
+    }
 }
