@@ -27,9 +27,14 @@ public class AdminController {
     public ResponseEntity<Object> addFestival(@RequestBody HashMap<String,Object> festival) {
         return new ResponseEntity<>(festivalService.addFestival(festival), HttpStatus.CREATED);
     }
-    @PutMapping("/festival/{id}/nft")
-    public ResponseEntity<Festival> createNft(@PathVariable String id, @RequestBody Object nft){
-        return new ResponseEntity<>(festivalService.insertNft(id, nft), HttpStatus.OK);
+    @PutMapping("/festival/{festivalId}/nft")
+    public ResponseEntity<Festival> createNft(@PathVariable String festivalId, @RequestBody Object nft){
+        return new ResponseEntity<>(festivalService.insertNft(festivalId, nft), HttpStatus.OK);
+    }
+
+    @PutMapping("/festival/{festivalId}/imageList")
+    public ResponseEntity<Object> addImageList(@PathVariable String festivalId, @RequestBody List<String> imageList){
+        return new ResponseEntity<>(festivalService.insertImageList(festivalId, imageList), HttpStatus.OK);
     }
 
     @GetMapping("/festival/nft/{festivalId}")

@@ -9,6 +9,7 @@ import java.util.List;
 
 
 public interface FestivalRepository extends MongoRepository<Festival, String> {
+
 	Page<Festival> findByNameContainsIgnoreCase(String name, Pageable pageable);
 
 	Page<Festival> findByNameContainsAndCategory(String name, String category, Pageable pageable);
