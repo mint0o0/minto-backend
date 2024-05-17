@@ -1,7 +1,6 @@
 package com.example.mintobackend.controller;
 
 import com.example.mintobackend.dto.VisitFestivalDto;
-import com.example.mintobackend.entity.Festival;
 import com.example.mintobackend.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -10,16 +9,20 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 @RestController
+@RequestMapping("/member")
+
 @RequiredArgsConstructor
 public class MemberController {
     private final MemberService memberService;
 
     // get 방문한 축제
-    @GetMapping("/member/visit/festival")
+    @GetMapping("/visit/festival")
     public ResponseEntity<List<VisitFestivalDto>> getVisitedFestivals(@AuthenticationPrincipal User user){
         // 필요한 정보: 축제에 대한 정보, 방문 날짜
         return new ResponseEntity<>(memberService.getVisitedFestival(user.getUsername()), HttpStatus.OK) ;
@@ -40,5 +43,11 @@ public class MemberController {
     @GetMapping("/mission/complete/all/{festivalId}")
     public ResponseEntity<Integer> checkCompleteMissionAll(@AuthenticationPrincipal User user, @PathVariable String festivalId){
         return new ResponseEntity<>(memberService.checkCompleteMission(user.getUsername(), festivalId), HttpStatus.OK);
+    }
+
+    @GetMapping("/visitFestival/{month}")
+    public ResponseEntity<Object> getVisitFestivalByMonth(@AuthenticationPrincipal User user, @PathVariable Integer month){
+
+        return new ResponseEntity<>(memberService.getVisitFestivalByMonth(user.getUsername(), month), HttpStatus.OK);
     }
 }

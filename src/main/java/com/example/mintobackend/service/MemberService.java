@@ -8,10 +8,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -100,5 +100,35 @@ public class MemberService {
             return 1;
         }
 
+    }
+
+    @Transactional(readOnly = true)
+    public Object getVisitFestivalByMonth(String memberId, Integer month){
+        // 모든 축제 다 가져오기
+        var member = memberRepository.findByWalletAddress(memberId).orElseThrow(
+                ()->new RuntimeException("멤버 못찾음")
+        );
+        var response = new HashMap<LocalDate, List<Object>>();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
+        var visitFestival = member.getVisitFestivals();
+        System.out.println(visitFestival);
+        for (String festivalId: visitFestival.keySet()){
+            var festival = festivalRepository.findById(festivalId).orElseThrow(
+                    () -> new RuntimeException("축제 없음")
+            );
+
+            System.out.println(visitFestival.get(festivalId).get("visitDate"));
+            var s =  visitFestival.get(festivalId).get("visitDate").toString();
+            LocalDateTime dateTime = LocalDateTime.parse(s, formatter);
+
+            // 월에 맞으면 추가
+            if (dateTime.getMonth().getValue() == month){
+                var x = response.getOrDefault(dateTime.toLocalDate(), new ArrayList<>());
+                x.add(festival);
+                response.put(dateTime.toLocalDate(), x);
+            }
+
+        }
+        return response;
     }
 }
